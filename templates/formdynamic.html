@@ -1,0 +1,73 @@
+<html>
+    <head>
+    </head> <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <body>
+        <form>
+            <select id="num" value="1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+            </select>
+
+            <div id="container">
+                <p>
+
+                    <div class='email'>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                          </div>
+                              <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                              </div>
+                            <div class="form-group form-check">
+                          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                      </div>
+                    </div>
+                </p>
+            </div>
+
+        </form>
+
+
+        <script type="text/javascript">
+            var selectElement = document.getElementById('num');
+            var containerElement = document.getElementById('container');
+
+            var update = function () {
+                containerElm.innerHTML = ;
+                for (var i = 0, l = selectElm.value; i < l; ++i) {
+                    containerElm.innerHTML += '<me> </me>'; ##
+                    // how to add code in the for loop??????????????????
+                } // add a number of couples of <input> equal to selectElm.value
+            }
+
+
+            var listen, evt;
+            if (document.attachEvent) {
+                listen = 'attachEvent';
+                evt = 'onchange' ;
+            } else {
+                listen = 'addEventListener';
+                evt = 'change';
+            }
+            try {
+                selectElm[listen](evt, update);
+            } catch (e) {
+                selectElm[listen](evt, update, false);
+            }
+
+
+        </script>
+    </body>
+</html>
