@@ -5,3 +5,4 @@ from wtforms.validators import DataRequired
 
 class fireput(Form):
     champs = StringField('Data here')
+    emails = StringField('emails')
