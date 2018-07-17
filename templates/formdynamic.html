@@ -27,8 +27,8 @@
 
 
         <script type="text/javascript">
-            var selectElement = document.getElementById('num');
-            var containerElement = document.getElementById('container');
+            var selectElement = document.getElementById("num");
+            var containerElement = document.getElementById("container");
 
             var update = function () {
                 containerElement.innerHTML =  "" ;
@@ -40,29 +40,14 @@
                           <div class="form-group">
                               <label for="exampleInputEmail1">Email address</label>
                               <input type="email" class="form-control" name="exampleInputEmail[]" id="exampleInputEmail-${i}" aria-describedby="emailHelp" placeholder="Enter email">
-                              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                              <small id="emailHelp" class="form-text text-muted">We"ll never share your email with anyone else.</small>
                           </div>
                         </div>
                     </p>`;
                     // how to add code in the for loop??????????????????
                 } // add a number of couples of <input> equal to selectElm.value
             }
-
-
-            // var listen, evt;
-            // if (document.attachEvent) {
-            //     listen = 'attachEvent';
-            //     evt = 'onchange' ;
-            // } else {
-            //     listen = 'addEventListener';
-            //     evt = 'change';
-            // }
-            // try {
-            //     selectElement[listen](evt, update);
-            // } catch (e) {
-            //     selectElement[listen](evt, update, false);
-            // }
-            selectElement.addEventListener('change', update)
+            selectElement.addEventListener("change", update)
 
             var emails=[]
 
@@ -70,9 +55,8 @@
               for (var i = 0; i < selectElement.value; i++) {
                 emails[i] = document.getElementById(`exampleInputEmail-${i}`).value
               }
-                document.getElementById('emails').value=emails
+                document.getElementById("emails").value=emails
         }
-
 
 
         </script>

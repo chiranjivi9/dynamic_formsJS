@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+      <title>Form C</title>
+   </head>
+   <body>
+      <div class= "container">
+         <h1 align="center"> UNITED STATES<br>
+            SECURITIES AND EXCHANGE COMMISSION<br>
+            Washington, D.C. 20549<br>
+            FORM C<br>
+            UNDER THE SECURITIES ACT OF 1933<br>
+            <br>
+            <br>
+         </h1>
+         <h1 align="center">
+            <br>(OPTIONAL QUESTION & ANSWER FORM)<br>
+            <p>  <br>FOR AN OFFERING STATEMENT</p>
+         </h1>
+         <p> Respond to each question in each paragraph of this part. Set forth each question and any notes, but not<
+            any instructions thereto, in their entirety. If disclosure in response to any question is responsive to one or	more
+            other questions, it is not necessary to repeat the disclosure. If a question or series of questions is inapplicable or
+            the response is available elsewhere in the Form , either state that it is inapplicable, include a cross-reference to
+            the responsive disclosure, or om it the question or series of questions.<br>
+            Be very careful and precise in answering 	all 	questions. Give full and complete answers so that they are
+            not	misleading 	under the circumstances involved. Do not discuss any future performance or other anticipated
+            event unless you have a reasonable basis to believe that it will 	actually occur within the foreseeable future. If
+            any answer requiring 	significant information is	materially inaccurate, incomplete or	misleading , the Company,
+            its management and principal shareholders may be liable to investors based on that information.
+         </p>
+         </h1>
+         <h1 align="center">
+            <br>THE COMPANY<br>
+         </h1>
+         <form action={{ url_for("SEC") }} method="POST" name ="form">
+         {{ form.csrf_token }}
+         <p>1.Name of Issuer:
+            {{ form.companyname(class="form-control") }}
+         </p>
+         <br>
+         <!-- {{ form.companyname }} -->
+         <!-- {{ form.submit }} -->
+         <h1 align ="center"> <br> ELIGIBILITY</h1>
+         <br>
+         <p>2. {{ form.certify }} Check this box to certify that all of the following statements are true for the issuer:<br>
+            •	 Organized under, and subject to, the laws of a State or territory of the United States or the District of
+            Columbia.<br>
+            •	 Not subject to the requirement to file reports pursuant to Section 13 or Section 15(d) of the Securities
+            Exchange Act of 1934.
+            •	 Not an investment company registered or required to be registered under the Investment Company Act
+            of 1940.<br>
+            •	 Not ineligible to rely on this exemption under Section 4(a)(6) of the Securities Act as a result of a
+            disqualification specified in Rule 503(a) of Regulation Crowdfunding . (For	m ore inform ation about these
+            disqualifications, see Question 30 of this Question and Answer format).<br>
+            •	 Has filed with the Commission and provided to investors, to the extent required, the ongoing annual
+            reports required by Regulation Crowdfunding 	during 	the two years immediately preceding 	the filing
+            of this offering 	statement (or for such shorter period that the issuer was required to file such reports).<br>
+            •	 Not a development stage company that (a) has no specific business plan or (b) has indicated that its
+            business plan is to engage in a	merger or acquisition with an unidentified company or companies.<br>
+         <h5>INSTRUCTION TO QUESTION 2: If any of these statements is not true, then you are NOT eligible to
+            rely on this exemption under Section 4(a)(6) of the Securities Act. </p>
+         </h5>
+         3.	Has the issuer or any of its predecessors previously failed to comply with the ongoing reporting
+         requirements of Rule 202 of Regulation Crowdfunding?
+         <br></p>
+         {% for subfield in form.reporting_radio %}
+         {{ subfield }}
+         {{ subfield.label }}
+         {% endfor %}
+         <div class="form-group">
+            <label for="failedtocomply"></label>
+            {{ form.failedtocomply.label }}
+            {{ form.failedtocomply (class= "form-control") }}
+         </div>
+         <!-- DIRECTORS OF THE COMPANY  -->
+         <h1 align="center"> DIRECTORS OF THE COMPANY </h1>
+         <!--CREATES A DYNAMIC FORM FOR DIRECTOR OF THE COMPANY  -->
+         <!-- <form action="" method="POST">  {{form.csrf_token}} -->
+         <p>
+            Select the Number of Directors the company currently has.
+            <input type="hidden"  name="director_name" id="director_name">
+            <input type="hidden"  name="date_of_service" id="date_of_service">
+            <input type="hidden"  name="principal_occupation" id="principal_occupation">
+            <input type="hidden"  name="employer" id="employer">
+            <input type="hidden"  name="emp_principal_biz" id="emp_principal_biz">
+            <input type="hidden"  name="dir_pos1" id="dir_pos1">
+            <input type="hidden"  name="pos1_date1" id="pos1_date1">
+            <input type="hidden"  name="dirotherposheld_one" id="dirotherposheld_one">
+            <input type="hidden"  name="diroemp_name1" id="diroemp_name1">
+            <input type="hidden"  name="diroemp_biz1" id="diroemp_biz1">
+            <input type="hidden"  name="diroemptitle1" id="diroemptitle1">
+            <input type="hidden"  name="diroemp_startdate1" id="diroemp_startdate1">
+            <input type="hidden"  name="diroemp_startdate21" id="diroemp_startdate21">
+            <input type="hidden"  name="diroemp_resp1" id="diroemp_resp1">
+            <select id="dir_num">
+               <option value="0">0</option>
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <!-- <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option> -->
+            </select>
+         <div id="director_container">
+            <!-- this contains the values entered in the form -->
+         </div>
+         <h6> Click submit when you are done filling the form</h6>
+         <input type="submit" onclick="myFunction()" value="Submit form">
+         <!-- </form> -->
+         <script type="text/javascript">
+            var dir_selectElement = document.getElementById("dir_num");
+            var dir_containerElement = document.getElementById("director_container");
+            //to print the entries as per the selected number
+            var update = function () {
+                dir_containerElement.innerHTML =  "" ;
+                for (var i = 0, l = dir_selectElement.value; i < l; ++i) {
+
+                    dir_containerElement.innerHTML += `
+                    <p> 4. Provide the following 	information about each director (and any persons occupying
+                      a similar status or performing 	a similar function) of the issuer:</p>
+
+                    <div class="form-row">
+                          <div class="form-group col-md-4" >
+                            {{form.director_name.label}}
+                            {{form.director_name(class="form-control", placeholder="Director Name")}}
+                          </div>
+                          <div class="form-group col-md-2">
+                            {{form.date_of_service.label}}
+                            {{ form.date_of_service(class="form-control", placeholder="mm/dd/yyyy")}}
+                          </div>
+                    </div>
+
+                    <div class="form-group col-md-8">
+                      {{ form.principal_occupation.label }}
+                      {{ form.principal_occupation(class="form-control", placeholder="Principal Occupation") }}<br>
+                    </div>
+                    <div class="form-row">
+                          <div class="form-group col-md-4" >
+                            {{form.employer.label}}
+                            {{form.employer(class="form-control", placeholder="Director Name")}}
+                          </div>
+                          <div class="form-group col-md-2">
+                            {{form.emp_dos.label}}
+                            {{ form.date_of_service(class="form-control", placeholder="mm/dd/yyyy")}}
+                          </div>
+                    </div>
+                    <div class="form-group col-md-8">
+                      {{form.emp_principal_biz.label}}
+                      {{form.emp_principal_biz(class="form-control", placeholder="Employer's Principal Business")}}
+            <br>
+                    <!-- not in the govt form c so removed below -->
+            <p> List all 	positions and offices with the issuer held and the period of time in which the
+              director served in the position or office:  </p>
+
+                          <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  {{ form.dir_pos1.label }}
+                                  {{ form.dir_pos1(class="form-control", placeholder="Position" )}}
+                                </div>
+                                  <div class="form-group col-md-4">
+                                    {{form.pos1_date1.label}}
+                                    {{form.pos1_date1(class="form-control", placeholder="mm/dd/yyyy")}}
+                                  </div>
+                          </div>
+                          <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  {{ form.dir_pos2.label }}
+                                  {{ form.dir_pos2(class="form-control",  placeholder="Position" )}}
+                                </div>
+                                  <div class="form-group col-md-4">
+                                    {{form.pos2_date2.label}}
+                                    {{form.pos2_date2(class="form-control", placeholder="mm/dd/yyyy")}}
+                                  </div>
+                          </div>
+
+                          <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  {{ form.dir_pos3.label }}
+                                  {{ form.dir_pos3(class="form-control",  placeholder="Position")}}
+                                </div>
+                                  <div class="form-group col-md-4">
+                                    {{form.pos3_date3.label}}
+                                    {{form.pos3_date3(class="form-control", placeholder="mm/dd/yyyy")}}
+                                </div>
+                          </div>
+
+
+                          <p>Previous Positions held with the Issuer:
+                            <div  class="form-group col-md-8">
+                              {{ form.prevposition(class="form-control", placeholder="Previous Positiion") }}
+                            </div>
+                          </p>
+            <p> Business Experience: List the employers, titles and dates of positions held during past three
+              years with an indication of job responsibilities: </p>
+
+                                <br>
+                                {{form.dirotherposheld_one.label}}
+                                {{form.dirotherposheld_one(class="form-control", placeholder="Other Position")}}
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      {{ form.diroemp_name1.label }}
+                                      {{ form.diroemp_name1(class="form-control", placeholder="Employer") }}
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      {{ form.diroemp_biz1.label }}
+                                      {{ form.diroemp_biz1(class="form-control", placeholder="Employer’s principal business")}}
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        {{form.diroemptitle1.label}}
+                                        {{form.diroemptitle1(class="form-control", placeholder="Employee Title")}}
+                                </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-2">
+                                    {{form.diroemp_startdate1.label}}
+                                    {{form.diroemp_startdate1(class="form-control", placeholder="mm/dd/yyyy")}}
+                                  </div>
+                                  <div class="form-group col-md-2">
+                                    {{form.diroemp_startdate21.label}}
+                                    {{ form.diroemp_startdate21(class="form-control", placeholder="mm/dd/yyyy") }}
+                                    </div>
+                                </div>
+                                {{ form.diroemp_resp1.label }}
+                                {{ form.diroemp_resp1(class="form-control", placeholder="Responsibilities")}}<br><h8> ***END***</h8>
+
+            `;
+            // how to add code in the for loop??????????????????
+        } // add a number of couples of <input> equal to selectElm.value
+    }
+            dir_selectElement.addEventListener("change", update)
+            // creating an empty array
+            // var emails=[]
+            var director_name = []
+            var date_of_service = []
+            var principal_occupation = []
+            var employer = []
+            var emp_dos = []
+            var emp_principal_biz = []
+            var dir_pos1 = []
+            var pos1_date1 = []
+            var dirotherposheld_one = []
+            var diroemp_name1 = []
+            var diroemp_biz1 = []
+            var diroemptitle1 = []
+            var diroemp_startdate1 = []
+            var diroemp_startdate21 = []
+            var diroemp_resp1 = []
+            // save tp firebase
+            function myFunction() {
+              for (var i = 0; i < dir_selectElement.value; i++) {
+                director_name[i] = document.getElementById(`exampleInputEmail-${i}`).value
+                date_of_service[i] = document.getElementById(`exampleInputEmail-${i}`).value
+                principal_occupation[i] = document.getElementById(`exampleInputEmail-${i}`).value
+                emp_dos[i] = document.getElementById(`exampleInputEmail-${i}`).value
+                emp_principal_biz[i] = document.getElementById(`exampleInputEmail-${i}`).value
+                dir_pos1[i] = document.getElementById(`exampleInputEmail-${i}`).value
+                pos1_date1[i] = document.getElementById(`exampleInputEmail-${i}`).value
+                dirotherposheld_one[i] = document.getElementById(`exampleInputEmail-${i}`).value
+                diroemp_name1[i] = document.getElementById(`exampleInputEmail-${i}`).value
+                diroemp_biz1[i] = document.getElementById(`exampleInputEmail-${i}`).value
+                diroemptitle1[i] = document.getElementById(`exampleInputEmail-${i}`).value
+                diroemp_startdate1[i] = document.getElementById(`exampleInputEmail-${i}`).value
+                diroemp_startdate21[i] = document.getElementById(`exampleInputEmail-${i}`).value
+                diroemp_resp1[i] = document.getElementById(`exampleInputEmail-${i}`).value
+              }
+                document.getElementById("director_name").value=director_name
+                document.getElementById("date_of_service").value=date_of_service
+                document.getElementById("principal_occupation").value=principal_occupation
+                document.getElementById("emp_dos").value=emp_dos
+                document.getElementById("emp_principal_biz").value=emp_principal_biz
+                document.getElementById("dir_pos1").value=dir_pos1
+                document.getElementById("pos1_date1").value=pos1_date1
+                document.getElementById("dirotherposheld_one").value=dirotherposheld_one
+                document.getElementById("diroemp_name1").value=diroemp_name1
+                document.getElementById("diroemp_biz1").value=diroemp_biz1
+                document.getElementById("diroemptitle1").value=diroemptitle1
+                document.getElementById("diroemp_startdate1").value=diroemp_startdate1
+                document.getElementById("diroemp_startdate21").value=diroemp_startdate21
+                document.getElementById("diroemp_resp1").value=diroemp_resp1
+
+            }
+         </script>
+         <!-- OFFICER OS THE COMPANY  -->
+         <h1 align="center"> OFFICERS OF THE COMPANY </h1>
+         <!-- GENERATE OFFICERS DYNAMICALLY -->
+         <!-- OFFICER FORM -->
+         <p>
+            Select the number of Officers the Company has.
+            <input type="hidden"  name="emails" id="emails">
+            <select id="off_num">
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">5</option>
+               <option value="6">6</option>
+               <!-- <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option> -->
+            </select>
+         </p>
+         <div id="off_container">
+         </div>
+         <h6> Click submit when you are done filling the form</h6>
+         <input type="submit" onclick="myFunction()" value="Submit form">
+         <!-- </form> -->
+         <script type="text/javascript">
+            var off_selectElement = document.getElementById("off_num");
+            var off_containerElement = document.getElementById("off_container");
+
+            var update = function () {
+                off_containerElement.innerHTML =  "" ;
+                for (var i = 0, l = off_selectElement.value; i < l; ++i) {
+
+                    off_containerElement.innerHTML += `
+                    <p>5. Provide the following information about each officer (and any persons occupying a similar status
+                        or performing a similar function) of the issuer: </p>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                          {{ form.name_one.label }}
+                          {{ form.name_one(class="form-control", placeholder="Employee Name") }}
+                        </div>
+                        <div class="form-group col-md-3">
+                            {{form.title_one.label}}
+                            {{form.title_one(class="form-control", placeholder="Employee Title")}}
+                        </div>
+                        <div class="form-group col-md-2">
+                        {{form.start_date_one.label}}
+                        {{form.start_date_one(class="form-control", placeholder="mm/dd/yyyy")}}
+                        </div>
+                    </div>
+
+                    <p>
+                    {{ form.responsibilities_one.label }}
+                    {{ form.responsibilities_one(class="form-control", placeholder="Responsibilities")}}</p><br>
+
+                    <p>  Business Experience: List any other employers, titles and dates of positions held during past three years with an
+                        indication of job responsibilities:</p>
+                    <br>
+                    {{form.other_positions_held_one.label}}
+                    {{form.other_positions_held_one(class="form-control", placeholder="Other Position")}}
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                          {{ form.oemp_name1.label }}
+                          {{ form.oemp_name1(class="form-control", placeholder="Employer") }}
+                        </div>
+                        <div class="form-group col-md-4">
+                          {{ form.oemp_biz1.label }}
+                          {{ form.oemp_biz1(class="form-control", placeholder="Employer’s principal business") }}
+                        </div>
+                        <div class="form-group col-md-3">
+                            {{form.oemptitle1.label}}
+                            {{form.oemptitle1(class="form-control", placeholder="Employee Title")}}
+                    </div>
+                  </div>
+                  <div class="form-row">
+                        <div class="form-group col-md-2">
+                        {{form.oemp_startdate1.label}}
+                        {{form.oemp_startdate1(class="form-control", placeholder="mm/dd/yyyy")}}
+                      </div>
+                      <div class="form-group col-md-2">
+                        {{form.oemp_startdate21.label}}
+                        {{ form.oemp_startdate11(class="form-control", placeholder="mm/dd/yyyy") }}
+                        </div>
+                  </div>
+                    {{ form.oemp_resp1.lable }}
+                    {{ form.oemp_resp1(class="form-control", placeholder="Responsibilities") }}<br><h7>***END***</h7>`;
+                    // how to add code in the for loop??????????????????/
+                } // add a number of couples of <input> equal to selectElm.value
+            }
+            off_selectElement.addEventListener("change", update)
+
+            var emails=[]
+
+            function myFunction() {
+              for (var i = 0; i < off_selectElement.value; i++) {
+                emails[i] = document.getElementById(`exampleInputEmail-${i}`).value
+              }
+                document.getElementById("emails").value=emails
+            }
+         </script>
+         <!-- OLD CODE
+            <p class="text-monospace" > Officer 2</p>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                      {{ form.name_two.label }}
+                      {{ form.name_two(class="form-control", placeholder="Employee Name") }}
+                    </div>
+                    <div class="form-group col-md-3">
+                        {{form.title_two.label}}
+                        {{form.title_two(class="form-control", placeholder="Employee Title")}}
+                    </div>
+                    <div class="form-group col-md-2">
+                    {{form.start_date_two.label}}
+                    {{form.start_date_two(class="form-control", placeholder="mm/dd/yyyy")}}
+                    </div>
+                </div>
+
+
+              {{ form.responsibilities_two.label }}
+              {{ form.responsibilities_two(class="form-control", placeholder="Responsibilities")}}<br>
+
+            <p>  Business Experience: List any other employers, titles and dates of positions held during past three years with an
+            indication of job responsibilities:</p>
+            <br>  {{form.other_positions_held_two.label}}
+            {{form.other_positions_held_two(class="form-control", placeholder="Other Position")}}
+
+                  <div class="form-row">
+                      <div class="form-group col-md-4">
+                        {{ form.oemp_name2.label }}
+                        {{ form.oemp_name2(class="form-control", placeholder="Employer") }}
+                      </div>
+                      <div class="form-group col-md-4">
+                        {{ form.oemp_biz2.label }}
+                        {{ form.oemp_biz2(class="form-control", placeholder="Employer’s principal business") }}
+                      </div>
+                      <div class="form-group col-md-3">
+                          {{form.oemptitle2.label}}
+                          {{form.oemptitle2(class="form-control", placeholder="Employee Title")}}
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group col-md-2">
+                      {{form.oemp_startdate2.label}}
+                      {{form.oemp_startdate2(class="form-control", placeholder="mm/dd/yyyy")}}
+                    </div>
+                    <div class="form-group col-md-2">
+                      {{form.oemp_startdate21.label}}
+                      {{ form.oemp_startdate21(class="form-control", placeholder="mm/dd/yyyy") }}
+                      </div>
+                  </div>
+                  {{ form.oemp_resp2.lable }}
+                  {{ form.oemp_resp2(class="form-control", placeholder="Responsibilities") }}<br>  -->
+         <h2 align="center"> ALL OTHER EMPLOYEES </h2>
+         <br>
+         <!-- EMP DYNAMIC FORM -->
+         <p>
+            Select the Number of Employees Currently Working in the Company
+            <input type="hidden"  name="emails" id="emails">
+            <select id="allemp_num">
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">5</option>
+               <option value="6">6</option>
+               <option value="7">7</option>
+               <option value="8">8</option>
+               <option value="9">9</option>
+               <option value="10">10</option>
+               <option value="11">11</option>
+               <option value="12">12</option>
+               <option value="13">13</option>
+               <option value="14">14</option>
+               <option value="15">15</option>
+               <option value="16">16</option>
+               <option value="17">17</option>
+               <option value="18">18</option>
+               <option value="19">19</option>
+               <option value="20">20</option>
+            </select>
+         </p>
+         <div id="allemp_container">
+         </div>
+         <h6> Click submit when you are done filling the form</h6>
+         <input type="submit" onclick="myFunction()" value="Submit form">
+         <script type="text/javascript">
+            var allemp_selectElement = document.getElementById("allemp_num");
+            var allemp_containerElement = document.getElementById("allemp_container");
+
+            var update = function () {
+                allemp_containerElement.innerHTML =  "" ;
+                for (var i = 0, l = allemp_selectElement.value; i < l; ++i) {
+
+                    allemp_containerElement.innerHTML += `
+                    <p>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                          {{ form.emp_name.label }}
+                          {{ form.emp_name(class="form-control", placeholder="Employee Name") }}
+                        </div>
+                        <div class="form-group col-md-3">
+                            {{form.emp_title.label}}
+                            {{form.emp_title(class="form-control", placeholder="Employee Title")}}
+                        </div>
+                        <div class="form-group col-md-2">
+                        {{form.emp_start_date.label}}
+                        {{form.emp_start_date(class="form-control", placeholder="mm/dd/yyyy")}}
+                        </div>
+                    </div>
+
+                      {{ form.emp_responsibilities.label }}
+                      {{ form.emp_responsibilities(class="form-control", placeholder="Responsibilities")}}<br><h7>***END***
+                    </p>`;
+                    // how to add code in the for loop??????????????????
+                } // add a number of couples of <input> equal to selectElm.value
+            }
+            allemp_selectElement.addEventListener("change", update)
+            var emails=[]
+            function myFunction() {
+              for (var i = 0; i < allemp_selectElement.value; i++) {
+                emails[i] = document.getElementById(`exampleInputEmail-${i}`).value
+              }
+                document.getElementById("emails").value=emails
+            }
+         </script>
+         <!-- <p class="text-monospace" > Employee 1</p>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                  {{ form.emp_name.label }}
+                  {{ form.emp_name(class="form-control", placeholder="Employee Name") }}
+                </div>
+                <div class="form-group col-md-3">
+                    {{form.emp_title.label}}
+                    {{form.emp_title(class="form-control", placeholder="Employee Title")}}
+                </div>
+                <div class="form-group col-md-2">
+                {{form.emp_start_date.label}}
+                {{form.emp_start_date(class="form-control", placeholder="mm/dd/yyyy")}}
+                </div>
+            </div>
+
+              {{ form.emp_responsibilities.label }}
+              {{ form.emp_responsibilities(class="form-control", placeholder="Responsibilities")}}
+
+              <p class="text-monospace" > Employee 2</p>
+                  <div class="form-row">
+                      <div class="form-group col-md-4">
+                        {{ form.emp_name2.label }}
+                        {{ form.emp_name2(class="form-control", placeholder="Employee Name") }}
+                      </div>
+                      <div class="form-group col-md-3">
+                          {{form.emp_title2.label}}
+                          {{form.emp_title2(class="form-control", placeholder="Employee Title")}}
+                      </div>
+                      <div class="form-group col-md-2">
+                      {{form.emp_start_date2.label}}
+                      {{form.emp_start_date2(class="form-control", placeholder="mm/dd/yyyy")}}
+                      </div>
+                  </div>
+
+                    {{ form.emp_responsibilities2.label }}
+                    {{ form.emp_responsibilities2(class="form-control", placeholder="Responsibilities")}}
+
+                    <p class="text-monospace" > Employee 3</p>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                              {{ form.emp_name3.label }}
+                              {{ form.emp_name3(class="form-control", placeholder="Employee Name") }}
+                            </div>
+                            <div class="form-group col-md-3">
+                                {{form.emp_title3.label}}
+                                {{form.emp_title3(class="form-control", placeholder="Employee Title")}}
+                            </div>
+                            <div class="form-group col-md-2">
+                            {{form.emp_start_date3.label}}
+                            {{form.emp_start_date3(class="form-control", placeholder="mm/dd/yyyy")}}
+                            </div>
+                        </div>
+
+                          {{ form.emp_responsibilities3.label }}
+                          {{ form.emp_responsibilities3(class="form-control", placeholder="Responsibilities")}}
+
+                          <p class="text-monospace" > Employee 4</p>
+                              <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    {{ form.emp_name4.label }}
+                                    {{ form.emp_name4(class="form-control", placeholder="Employee Name") }}
+                                  </div>
+                                  <div class="form-group col-md-3">
+                                      {{form.emp_title4.label}}
+                                      {{form.emp_title4(class="form-control", placeholder="Employee Title")}}
+                                  </div>
+                                  <div class="form-group col-md-2">
+                                  {{form.emp_start_date4.label}}
+                                  {{form.emp_start_date4(class="form-control", placeholder="mm/dd/yyyy")}}
+                                  </div>
+                              </div>
+
+                                {{ form.emp_responsibilities4.label }}
+                                {{ form.emp_responsibilities4(class="form-control", placeholder="Responsibilities")}}
+            -->
+         <h1 align= "center"> PRINCIPAL SECURITY HOLDERS </h1>
+         <p>
+            Select the Number of Security Holders(Maximum 5)
+            <input type="hidden"  name="emails" id="emails">
+            <select id="psh_num">
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">5</option>
+               <!-- <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option> -->
+            </select>
+         </p>
+         <div id="psh_container">
+         </div>
+         <h6> Click submit when you are done filling the form</h6>
+         <input type="submit" onclick="myFunction()" value="Submit form">
+         </form>
+         <script type="text/javascript">
+            var psh_selectElement = document.getElementById('psh_num');
+            var psh_containerElement = document.getElementById('psh_container');
+
+            var update = function () {
+                psh_containerElement.innerHTML =  "" ;
+                for (var i = 0, l = psh_selectElement.value; i < l; ++i) {
+
+                    psh_containerElement.innerHTML += `
+                    <p>
+                    <p>6. Provide the name and ownership level of each person, as of the most recent practicable date,
+                      who is the beneficial owner of 20 percent or more of the issuer"s outstanding voting equity securities,
+                      calculated on the basis of voting power.</p>
+                      <div class="form-row">
+                          <div class="form-group col-md-4">
+                            {{ form.name_of_holder.label }}
+                            {{ form.name_of_holder(class="form-control", placeholder="Name") }}
+                          </div>
+                          <div class="form-group col-md-3">
+                              {{form.n_security_held.label}}
+                              {{form.n_security_held(class="form-control", placeholder="Number of Securities Held")}}
+                          </div><br>
+                          <p>{{ form.class_security_held }}  {{form.class_security_held.label}}  </p>
+                          <div class="form-group col-md-6">
+                          {{form.voting_power.label}}
+                          {{form.voting_power(class="form-control", placeholder="% voting power")}}
+                          <p>
+                            INSTRUCTION TO QUESTION 6: 	The above information	must be provided as of a date that is no	more than
+                            120 days prior to the date of filing 	of this offering 	statement. <br>
+                            To calculate total 	voting 	power, include all 	securities for which the person directly or indirectly has or shares the
+                            voting 	power, which includes the power to vote or to direct the voting 	of such securities. If the person has the
+                            right to acquire voting 	power of such securities within 60 days, including through the exercise of any option,
+                            warrant or right, the conversion of a security, or other arrangement, or if securities are held by a	member of the
+                            family, throug h corporations or partnerships, or otherwise in a	manner that would allow a person to direct or
+                            control the voting 	of the securities (or share in such direction or control - as, for example, a co-trustee) they
+                            should be included as being 	“beneficially owned.” You should include an explanation of these circumstances in
+                            a footnote to the “Number of and Class of Securities Now Held.” To calculate outstanding voting 	equity securities,
+                            assume all 	outstanding options are exercised and all 	outstanding convertible securities converted.
+                          </p>
+                          </div>
+                      </div>
+                    </p>`;
+                    // how to add code in the for loop??????????????????
+                } // add a number of couples of <input> equal to selectElm.value
+            }
+            psh_selectElement.addEventListener('change', update)
+
+            var emails=[]
+
+            function myFunction() {
+              for (var i = 0; i < psh_selectElement.value; i++) {
+                emails[i] = document.getElementById(`exampleInputEmail-${i}`).value
+              }
+                document.getElementById('emails').value=emails
+            }
+         </script>
+         <h1 align="center"> BUSINESS AND ANTICIPATED BUSINESS PLAN </h1>
+         <p>7.	Describe in detail the business of the issuer and the anticipated business plan of the issuer. </p>
+         <br>
+         <div class="form-group">
+            <label for="biz_ant_plan"></label>
+            {{ form.biz_ant_plan.label }}
+            {{ form.biz_ant_plan (class= "form-control") }}
+         </div>
+         <p>"*****Check file upload code*****"</p>
+         <p> Upload file here... </p>
+         <div class="custom-file">
+            <input type=file name=file>
+            <input type=submit value=Upload>
+         </div>
+         <h1 align= "center"> RISK FACTORS </h1>
+         A crowdfunding investment involves risk. You should not invest any funds in this offering unless you can
+         afford to lose your entire investment.<br></pre>
+         In making an investment decision, investors must rely on their own examination of the issuer and the
+         terms of the offering, including the merits and risks involved. These securities have not been recommended
+         or approved by any federal or state securities commission or regulatory authority. Furthermore, these
+         authorities have not passed upon the accuracy or adequacy of this document.<br>
+         The U.S. Securities and Exchange Commission does not pass upon the merits of any securities offered or
+         the terms of the offering, nor does it pass upon the accuracy or completeness of any offering document or
+         literature.<br>
+         These securities are offered under an exemption from registration; however, the U.S. Securities and Exchange
+         Commission has not made an independent determination that these securities are exempt from
+         registration.<br>
+         <p>8. Discuss the	material factors that	make an investment in the issuer speculative or risky: </p>
+         <div class="form-group">
+            <label for="risk_factors"></label>
+            {{ form.risk_factors.label }}
+            {{ form.risk_factors (class= "form-control") }}
+         </div>
+         <h1 align="center"> THE OFFERING </h1>
+         <p>9. What is the purpose of this offering?<br></p>
+         <div class="form-group">
+            <label for="offering_purpose"></label>
+            {{ form.offering_purpose.label }}
+            {{ form.offering_purpose (class= "form-control") }}
+         </div>
+         <p>10. How does the issuer intend to use the proceeds of this offering? </p>
+         <h6>(Please select the number of items to be added.)</h6>
+         <table class="table table-striped" >
+            <thead>
+               <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Items</th>
+                  <th scope="col">Target Proceeds</th>
+                  <th scope="col">Maximum Proceeds</th>
+               </tr>
+            </thead>
+         </table>
+         <input type="hidden"  name="emails" id="emails">
+         <select id="tab_num">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+         </select>
+         <div id="tab_container">
+         </div>
+         <h6> Click submit when you are done filling the form</h6>
+         <input type="submit" onclick="myFunction()" value="Submit form">
+         </form>
+         <script type="text/javascript">
+            var tab_selectElement = document.getElementById("tab_num");
+            var tab_containerElement = document.getElementById("tab_container");
+
+            var update = function () {
+                tab_containerElement.innerHTML =  "" ;
+                for (var i = 0, l = tab_selectElement.value; i < l; ++i) {
+
+                    tab_containerElement.innerHTML += `
+                    <p>
+                    <table class="table table-striped col-md-3">
+                    <tbody>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>{{form.item_one}}</td>
+                        <td>{{form.t_proceed_one}}</td>
+                        <td>{{form.max_proceeds_one}}</td>
+                    </tr>
+                    </tbody>
+                    </table>
+                    </p>`;
+
+                }
+
+            }
+            tab_selectElement.addEventListener("change", update)
+
+            var emails=[]
+
+            function myFunction() {
+              for (var i = 0; i < tab_selectElement.value; i++) {
+                emails[i] = document.getElementById(`exampleInputEmail-${i}`).value
+              }
+                document.getElementById("emails").value=emails
+            }
+
+
+         </script>
+         <table class="table table-striped" >
+            <tbody>
+               <tr>
+                  <th scope="row"></th>
+                  <th scope="col">TOTAL</th>
+                  <td>{{form.total_target_proceed}}</td>
+                  <td>{{form.total_max_proceed}}</td>
+               </tr>
+            </tbody>
+         </table>
+         <!-- <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>{{form.item_one}}</td>
+                <td>{{form.t_proceed_one}}</td>
+                <td>{{form.max_proceeds_one}}</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>{{form.item_two}}</td>
+                <td>{{form.t_proceed_two}}</td>
+                <td>{{form.max_proceeds_two}}</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>{{form.item_three}}</td>
+                <td>{{form.t_proceed_three}}</td>
+                <td>{{form.max_proceeds_three}}</td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td>{{form.item_four}}</td>
+                <td>{{form.t_proceed_four}}</td>
+                <td>{{form.max_proceeds_four}}</td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <th scope="col">TOTAL</th>
+              <td>{{form.total_target_proceed}}</td>
+              <td>{{form.total_max_proceed}}</td>
+            </tr>
+            </tbody> -->
+         <p>INSTRUCTION TO QUESTION 10: 	An issuer	must provide a reasonably detailed description of any intended
+            use of proceeds, such that investors are provided with an adequate amount of information to understand how the
+            offering proceeds will be used. If an issuer has identified a range of possible uses, the issuer should identify and
+            describe each probable use and the factors the issuer	may consider in allocating proceeds among the potential
+            uses. If the issuer will accept proceeds in excess of the target offering amount, the issuer must describe the purpose,
+            method for allocating oversubscriptions, and intended use of the excess proceeds with similar specificity.<br>
+            <br>11. How will the issuer complete the transaction and deliver securities to the investors?<br>
+         </p>
+         <div class="form-group">
+            <label for="hcomplete_trans"></label>
+            {{ form.hcomplete_trans.label }}
+            {{ form.hcomplete_trans (class= "form-control") }}
+         </div>
+         <p>12. How can an investor cancel an investment commitment?<br></p>
+         <div class="form-group">
+            <label for="hcancel_icommit"></label>
+            {{ form.hcancel_icommit.label }}
+            {{ form.hcancel_icommit (class= "form-control") }}
+         </div>
+         <p1>NOTE: Investors may cancel an investment commitment until 48 hours prior to the deadline
+            identified in these offering materials.
+            The intermediary will notify investors when the target offering amount has been met.
+            If the issuer reaches the target offering amount prior to the deadline identified in the
+            offering materials, it may close the offering early if it provides notice about the new
+            offering deadline at least five business days prior to such new offering deadline (absent a
+            material change that would require an extension of the offering and reconfirmation of the
+            investment commitment).
+            If an investor does not cancel an investment commitment before the 48-hour period prior to
+            the offering deadline, the funds will be released to the issuer upon closing of the offering and the
+            investor will receive securities in exchange for his or her investment.
+            If an investor does not reconfirm his or her investment commitment after a material change
+            is made to the offering, the investor’s investment commitment will be cancelled and the
+            committed funds will be returned.
+         </p1>
+         <h1 align="center"> OWNERSHIP AND CAPITAL STRUCTURE</h1>
+         <h2 align="center"> The Offering </h2>
+         <p> 13. Describe the terms of the securities being offered.<br></p>
+         <div class="form-group">
+            <label for="terms_security"></label>
+            {{ form.terms_security.label }}
+            {{ form.terms_security (class= "form-control") }}
+         </div>
+         <p> 14. Do the securities offered have voting rights?<br>
+            {{ form.vrights_offered }} If yes, please check the box.
+         <p>15. Are there any limitations on any voting or other rights identified above?</p>
+         {{ form.limit_vrights }} If yes, please check the box.
+         <br>If Yes, please explain:<br>
+         <div class="form-group">
+            <label for="limit_explain"></label>
+            {{ form.limit_explain.label }}
+            {{ form.limit_explain (class= "form-control") }}
+         </div>
+         <p>16. How may the terms of the securities being offered be modified?<br>  </p>
+         <div class="form-group">
+            <label for="mod_secterms"></label>
+            {{ form.mod_secterms.label }}
+            {{ form.mod_secterms (class= "form-control") }}
+         </div>
+         <h2 align="center"> Restrictions on Transfer of the Securities Being Offered </h2>
+         <p>The securities being 	offered	may not be transferred by any purchaser of such securities during the one year
+            period beginning when the securities were issued, unless such securities are transferred:<br>
+            (1) to the issuer;<br>
+            (2) to an accredited investor;<br>
+            (3) as part of an offering registered with the U.S. Securities and Exchange Commission; or<br>
+            (4) to a member of the family of the purchaser or the equivalent, to a trust controlled by the
+            purchaser, to a trust created for the benefit of a member of the family of the purchaser or
+            the equivalent, or in connection with the death or divorce of the purchaser or other
+            similar circumstance.
+         </p>
+         </h3>
+         <p1>
+            <h6>
+            NOTE: The term “accredited investor” means any person who comes within any of
+            the categories set forth in Rule 501(a) of Regulation D, or who the seller reasonably
+            believes comes within any of such categories, at the time of the sale of the securities
+            to that person.
+            The term “member of the family of the purchaser or the equivalent” includes a
+            child, stepchild, grandchild, parent, stepparent, grandparent, spouse or spousal
+            equivalent, sibling, mother-in-law, father-in-law, son-in-law, daughter-in-law,
+            brother-in-law, or sister-in-law of the purchaser, and includes adoptive
+            relationships. The term “spousal equivalent” means a cohabitant occupying a
+            relationship generally equivalent to that of a spouse.
+            <h6>
+         </p1>
+         <h2 align="center"> Description of Issuer"s Securities </h2>
+         <p>
+         <h4> ASK JM ABOUT Q.17 </h4>
+         <p>17. What other securities or classes of securities of the issuer are outstanding? Describe the
+            material terms of any other outstanding 	securities or classes of securities of the issuer.<br>
+            {{ form.outstanding_sec(class= "form-control") }}
+         </p>
+         <p> 18. How may the rights of the securities being offered be materially limited, diluted, or qualified by
+            the rights of any other class of security identified above?<br>{{ form.ans_oneeight(class= "form-control") }}
+         </p>
+         <p>19. Are there any differences not reflected above between the securities being offered and each other
+            class of security of the issuer??<br>
+         </p>
+         {{ form.check_secclass }} If yes, please check the box.
+         <p> Please explain: <br>{{ form.explain_diff(class= "form-control")}}  </p>
+         <p>20. How could the exercise of rights held by the principal shareholders identified in Question 6 above affect the
+            purchasers of the securities being offered?<br>{{ form.ans_twozero(class= "form-control") }}
+         </p>
+         <p>21. How are the securities being offered being valued? Include examples of methods for how such securities may be
+            valued by the issuer in the future, including during subsequent corporate actions.<br>
+            {{ form.ans_twoone(class= "form-control") }}
+         </p>
+         <p>22.What are the risks to purchasers of the securities relating to minority ownership in the issuer? <br>
+            {{ form.ans_twotwo(class= "form-control") }}
+         </p>
+         <br>
+         <p>23. What are the risks to purchasers associated with corporate actions including:<br>
+            &nbsp;&nbsp;&nbsp;• additional issuances of securities<br>
+            &nbsp;&nbsp;&nbsp;• issuer repurchases of securities<br>
+            &nbsp;&nbsp;&nbsp;• a sale of the issuer or of assets of the issuer or<br>
+            &nbsp;&nbsp;&nbsp;• transactions with related parties?<br>
+         </p>
+         {{ form.ans_twothree(class= "form-control") }}<br>
+         <p>24.Describe the material terms of any indebtedness of the issuer:<br>
+         <table class="table table-striped">
+            <thead>
+               <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Creditor(s)	</th>
+                  <th scope="col">Amount Outstanding ($)</th>
+                  <th scope="col">Interest Rate(%)</th>
+                  <th scope="col">Maturity Date</th>
+                  <th scope="col">Other Material Terms</th>
+               </tr>
+            </thead>
+         </table>
+         <h6> Please select the number of rows</h6>
+         <input type="hidden"  name="emails" id="emails">
+         <select id="indebt_num">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+         </select>
+         <div id="indebt_container">
+         </div>
+         <h6> Click submit when you are done filling the form</h6>
+         <input type="submit" onclick="myFunction()" value="Submit form">
+         </form>
+         <script type="text/javascript">
+            var indebt_selectElement = document.getElementById("indebt_num");
+            var indebt_containerElement = document.getElementById("indebt_container");
+
+            var update = function () {
+                indebt_containerElement.innerHTML =  "" ;
+                for (var i = 0, l = indebt_selectElement.value; i < l; ++i) {
+
+                    indebt_containerElement.innerHTML += `
+                    <p>
+                    <table class="table table-striped col-md-3">
+                    <tbody>
+                          <tr>
+                              <th scope="row"></th>
+                              <td>{{form.indebt_cred}}</td>
+                              <td>{{form.indebt_outamt}}</td>
+                              <td>{{form.indebt_intr}}</td>
+                              <td>{{form.indebt_dt}}</td>
+                              <td>{{form.indebtx}}</td>
+                          </tr>
+                      </tbody>
+                    </table>
+                    </p>`;
+
+                }
+
+            }
+            indebt_selectElement.addEventListener("change", update)
+
+            var emails=[]
+
+            function myFunction() {
+              for (var i = 0; i < indebt_selectElement.value; i++) {
+                emails[i] = document.getElementById(`exampleInputEmail-${i}`).value
+              }
+                document.getElementById("emails").value=emails
+            }
+
+         </script>
+         <!-- old code -->
+         <!-- <table class="table table-striped">
+            <thead>
+               <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Creditor(s)	</th>
+                    <th scope="col">Amount Outstanding ($)</th>
+                    <th scope="col">Interest Rate(%)</th>
+                    <th scope="col">Maturity Date</th>
+                    <th scope="col">Other Material Terms</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row"></th>
+                    <td>{{form.indebt_cred}}</td>
+                    <td>{{form.indebt_outamt}}</td>
+                    <td>{{form.indebt_intr}}</td>
+                    <td>{{form.indebt_dt}}</td>
+                    <td>{{form.indebtx}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>{{form.indebt_cred1}}</td>
+                    <td>{{form.indebt_outamt1}}</td>
+                    <td>{{form.indebt_intr1}}</td>
+                    <td>{{form.indebt_dt1}}</td>
+                    <td>{{form.indebt1}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>{{form.indebt_cred2}}</td>
+                    <td>{{form.indebt_outamt2}}</td>
+                    <td>{{form.indebt_intr2}}</td>
+                    <td>{{form.indebt_dt2}}</td>
+                    <td>{{form.indebt2}}</td>
+              </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>{{form.indebt_cred3}}</td>
+                    <td>{{form.indebt_outamt3}}</td>
+                    <td>{{form.indebt_intr3}}</td>
+                    <td>{{form.indebt_dt3}}</td>
+                    <td>{{form.indebt3}}</td>
+              </tr>
+              <tr>
+                  <th scope="row">5</th>
+                  <td>{{form.indebt_cred4}}</td>
+                  <td>{{form.indebt_outamt4}}</td>
+                  <td>{{form.indebt_intr4}}</td>
+                  <td>{{form.indebt_dt4}}</td>
+                  <td>{{form.indebt4}}</td>
+            </tr>
+            </tbody>
+            </table>
+            -->
+         <br>
+         <br>
+         <p>25.What other exempt offerings has the issuer conducted within the past three years?<br>
+            Date of Offering: {{ form.eo_do }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Exemption Relied Upon: {{ form.eo_eru }} <br>
+            Securities Offered: {{ form.eo_seco }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Debt Amount Sold: $ {{ form.eo_damtsld }}
+         </p>
+         <p>
+            26. Was or is the issuer or any entities controlled by or under common control with the issuer a party to any
+            transaction since the beginning of the issuer"s last fiscal year,
+            or any currently proposed transaction, where the amount involved exceeds five percent of the
+            aggregate amount of capital raised by the issuer in reliance on Section 4(a)(6) of the Securities Act during
+            the preceding 12-month period, including the amount the issuer seeks to raise in the current offering,
+            in which any of the following persons had or is to have a direct or indirect material interest:<br>
+            &nbsp;&nbsp;&nbsp; • any director or officer of the issuer<br>
+            &nbsp;&nbsp;&nbsp; • any person who is, as of the most recent practicable date,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            the beneficial owner of 20 percent or more of the issuer"s outstanding voting equity securities,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; calculated on the basis of voting power,<br>
+            &nbsp;&nbsp;&nbsp; • if the issuer was incorporated or organized within the past three years, any promoter of the issuer, or<br>
+            &nbsp;&nbsp;&nbsp; • any immediate family member of any of the foregoing persons.<br>
+         </p>
+         <p>If yes, for each such transaction, disclose the following: </p>
+         <p> Specified Person: {{ form.sp }}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Relationship to the Issuer:{{ form.rti }}
+         </p>
+         <p>Nature of Interest in Transactions: {{ form.nit }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Indirect Amount of Interest:{{ form.iai }}
+         </p>
+         </h3>
+         <h2 align= "center"> FINANCIAL CONDITION OF THE ISSUER </h2>
+         <p>27. Does the issuer have an operating history?<br>
+            {{form.check_secclass}} If Yes, please check the box
+         </p>
+         <p> 28. Describe the financial condition of the issuer, including, to the extent material,
+            liquidity, capital resources and historical results of operations.
+         </p>
+         {{ form.ans_twoeight(class = "form-control") }}
+         <h2 align = "center">  FINANCIAL INFORMATION </h2>
+         <p>29. Include the financial information specified below covering the two most recently completed
+            fiscal years or the period(s) since inception, if shorter:<br>Choose one.
+         </p>
+         <p>
+         <h4>a) If Aggregate Offering Amount is $107,000 or less</h4>
+         </p>
+         Financial Information Required:
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <br> {{ form.ans_twoninea}} The following information of their equivalent line items as reported on the
+         fedaral income tax return filed by the issuer for the most recently completed year (if any): <br>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         Total income<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         Taxable income; and<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Total tax;<br>
+         &nbsp;&nbsp; certified by the principal executive officer of the issuer ti reflect  accurately the information
+         reported on the issuer"s federal income tax returns; and
+         <p> {{ form.ans_twonineb }} Financial statements of the issuer and its predecessors, if any.</p>
+         <p>Financial Statements Requirements:<br>
+            Financial statements must be certified by the principal executive officer of the issuer as set forth below.
+            If financial statements are available that have either been revieved or audited by a public accountant that is
+            independent of the issuer must provide those financial statements instead along with a signed audit
+            or review report and need not include the information reported on the federal income tax retiurns or the certification
+            of the principal executive offcier.
+         </p>
+         <p>
+         <h4>b) If Aggregate Offering Amount is more than $107,000, but not more than $535,000:</h4>
+         <br>
+         Financial Information Required:<br>
+         {{ form.ans_twoninec }} Financial statements of the issuer and its predecessors, if any.</p>
+         <p>Financial Statements Requirements: <br>
+            Financial statments must be reviewed by a public accountant that is independent of the issuer and must include a signed review report.
+            If financial statements of the issuer are available that have been audited by a public accountant that is independent of the issuer,
+            the issuer must provide those financial statements instead along 	with a signed audit report and need not include the
+            reviewed financial statements.
+         </p>
+         <h4> c) If Aggregate Offereing Amount id more than $535,000:</h4>
+         Financial Information Required: <br>
+         {{ form.ans_twonined }} Financial statements of the issuer and its predecessors, if any.</p>
+         <p>Financial Statements Requirements: <br>
+            Financial statements must be audited by a public accountant that is independent of the issuer and must include a signed audit report.
+            If the issuer has not previously sold securities in reliance on Regulation Crowdfunding and it is offering more than $535,000 but
+            not more than $1,070,000: Financial statements must be
+            reviewed by a public accountant that is independent of the issuer and must include a signed review report. If financial statements
+            of the issuer are available that have been audited by a public accountant
+            that is independent of the issuer, the issuer must provide those financial statements instead along with a signed audit report and
+            need not include the reviewed financial statements.
+         <p> PLEASE UPLOAD SUPPORTING/ADDITIONAL FINANCIAL DOCUMENTS BELOW.
+            <br>
+         <h3>  *****PUT FILE UPLOAD CODE HERE!*****</h3>
+         <p> Upload file here... </p>
+         <div class="custom-file">
+            <input type=file name=file>
+            <input type=submit value=Upload>
+         </div>
+         </p>
+         <p>INSTRUCTIONS TO QUESTION 29:<br> 1)To determine the financial statements required, the Aggregate Offering Amount for purposes of
+            this Question 29 means the aggregate amounts offered and sold by the issuer,
+            all entities controlled by or under common control with the issuer, and all predecessors of the issuer in reliance on Section 4(a)(6)
+            of the Securities Act within the preceding 12-month period plus
+            the current maximum offering amount provided on the cover of this Form.
+            <br>2) To determine whether the issuer has previously sold securities in reliance on Regulation Crowdfunding for purposes of
+            paragraph (c) of this Question 29,
+            “issuer” means the issuer, all entities controlled by or under common control with the issuer, and all predecessors of the issuer.
+            <br>3) Financial statements must be prepared in accordance with U.S. generally accepted accounting principles and
+            must include balance sheets, statements of comprehensive income, statements of cash flows, statements of changes in stock holders’
+            equity and notes to the financial statements. If the financial statements are not audited, they shall be
+            labeled as “unaudited.”
+            <br>4) Issuers offering securities and required to provide the information set forth in row (a) before filing a tax return for the
+            most recently completed fiscal year may provide information from the tax return filed
+            for the prior year (if any), provided that the issuer provides information from the tax return for the most recently completed fiscal
+            year when it is filed, if filed during 	the offering period. An issuer that requested an extension of the
+            time to file would not be required to provide information from the tax
+            return until the date when the return is filed, if filed during the offering period.
+         </p>
+         <p>
+            A principal executive officer certifying financial statements as described above must provide the
+            following certification**:<br>
+            <!-- <p class="text-center"> -->
+            Center aligned text on all viewport sizes I, {{ form.name(placeholder="Name of certifying individual") }}, certify that<br>
+            (1) the financial statements of {{form.issuer_iden(placeholder="identify the issuer") }} included in this Form are true and
+            <class = "text-center">complete in all material respects; and <br>
+            (2) the tax return information of {{form.issuer_iden(placeholder="identify the issuer")}} included in this Form reflects accurately
+            the information reported on the tax return for {{form.issuer_iden(placeholder="identify the issuer")}} filed for the fiscal year
+            ended {{ form.recentdate(placeholder="mm/dd/yyyy") }}.<br>
+            Signature- {{form.signature(placeholder="Signature")}}<br>
+            Title- {{ form.title(placeholder="Title") }}
+         </p>
+         </p>
+         <p>
+            ** Intentional misstatements or omissions of facts constitute federal criminal violations. See 18 U.S.C.1001.
+            To qualify as a public accountant that is independent of the issuer for purposes of this Question 29, the
+            accountant	must satisfy the independence standards of either:<br>
+            (i) Rul e 2-01 of Reg ul ation S-X or<br>
+            (ii) the AICPA<br>
+            The public accountant that audits or reviews the financial 	statem ents provided by an issuer	m ust be (1)
+            duly registered and in good standing 	as a certified public accountant under the laws of the place of his or
+            her residence or principal office or (2) in good standing 	and entitled to practice as a public accountant
+            under the laws of his or her place of residence or principal office.<br>
+            An issuer will not be in compliance with the requirement to provide reviewed financial statement if the
+            issuer received a review report that includes modifications. An issuer will not be in compliance with the
+            requirement to provide audited financial statements if the issuer received a qualified opinion, an adverse
+            opinion, or a disclaimer of opinion.<br>
+            The issuer must notify the public accountant of the issuer’s intended use of the public accountant’s audit
+            or review report in the offering.<br>
+            For an offering 	conducted in the first 120 days of a fiscal year, the financial statements provided	may be
+            for the two fiscal years prior to the issuer’s	most recently completed fiscal 	year; however, financial
+            statements for the two	most recently completed fiscal 	years	must be provided if they are otherwise
+            available. If	more than 120 days have passed since the end of the issuer’s	most recently completed fiscal
+            year, the financial statements provided	must be for the issuer’s two	most recently com pleted fiscal years.
+            If the 120th day falls on a Saturday, Sunday, or holiday, the next business day shall 	be considered the
+            120th day for purposes of determining 	the age of the financial statements.<br>
+            An issuer	may elect to delay complying 	with any new or revised financial 	accounting 	standard until 	the
+            date that a company that is not an issuer (as defined under section 2(a) of the Sarbanes-Oxley Act of 2002 is required to comply
+            with such new or revised accounting standard, if such standard also applies to
+            companies that are not issuers. Issuers electing such extension of time accommodation must disclose it
+            at the time the issuer files its offering statement and apply the election to all standards. Issuers electing
+            not to use this accommodation	must forgo this accommodation for all 	financial accounting 	standards and
+            may not elect to rely on this accommodation in any future filings.<br>
+         </p>
+         <p>
+            30. With respect to the issuer, any predecessor of the issuer, any affiliated issuer, any director, officer, general partner or
+            managing member of the issuer,
+            any beneficial owner of 20 percent or more of the issuer"s outstanding voting equity securities, calculated in the same form as
+            described in Question 6 of this Question and Answer format, any promoter connected with the issuer in any capacity at the time
+            of such sale, any person that has been or will be paid (directly or indirectly)<br> remuneration for solicitation of
+            purchasers in connection with such sale of securities, or any general partner, director, officer or managing member
+            of any such solicitor, prior to May 16, 2016: <br>
+         </p>
+         <p>(1)	Has any such person been convicted, within 10 years (or five years, in the case of issuers, their pre decessors
+            and affiliated issuers) before the filing of this offering statement, of any felony or misdemeanor:<br>
+            • In connection with the purchase or sale of any security?<br>
+            {{ form.check_felonyzerozero }} If Yes, please check the box.<br>
+            • Involving the making of any false filing with the Commission?<br>{{ form.check_felonyzeroone }} If Yes, please check the box.<br>
+            • Arising out of the conduct of the business of an underwriter, broker, dealer, municipal securities dealer,
+            investment adviser, funding portal or paid solicitor of purchasers of securities?<br>
+            {{ form.check_felonyone }} If Yes, please check the box.<br>
+            If yes, please explain below<br>
+            {{ form.expfelony1(class="form-control") }}
+         <p>Note: Thrivera"s platform does not allow Issuers to user our platform if the above is answered with a "Yes" value. <br></p>
+         <p>(2)	Is any such person subject to any order, judgment or decree of any court of competent jurisdiction, entered within
+            five years before the filing of the information required by Section 4A(b) of the Securities Act that, at the time of
+            filing of this offering statement, restrains or enjoins such person from engaging or continuing to engage
+            in any conduct or practice: <br>• In connection with the purchase or sale of any security?<br>
+            • Involving the making of any false filing with the Commission?<br> • Arising out of the conduct of the business
+            of an underwriter, broker, dealer, municipal securities dealer, investment adviser, funding portal or paid solicitor of
+            purchasers of securities? <br>
+            {{ form.check_felonytwo }} If Yes, please check the box.<br>
+            If yes, please explain below<br>
+            {{ form.expfelony2(class="form-control") }}
+            <br>
+         </p>
+         <p>Note: Thrivera"s platform does not allow Issuers to user our platform if the above is answered with a "Yes" value.</p>
+         <br>
+         <p>(3)	Is any such person subject to a final order of a state securities commission (or an agency or officer of a
+            state performing like functions); a state authority that supervises or examines banks, savings associations or credit unions;
+            a state insurance commission (or an agency or officer of a state performing like functions); an appropriate federal banking agency;
+            the U.S. Commodity Futures Trading Commission; or the National Credit Union Administration that:<br>
+            • at the time of the filing of this offering statement bars the person from: (A) association with an entity regulated by
+            such commission, authority, agency or officer, (B) engaging in the business of securities, insurance or banking, or (C) engaging
+            in savings association or credit union activities?<br>
+            • Constitutes a final order based on a violation of any law or regulation that prohibits fraudulent, manipulative or deceptive
+            conduct and for which the order was entered within the 10-year period ending on the date of the filing of this offering statement? <br>
+            {{ form.check_felonythree }} If Yes, please check the box.<br>
+            If yes, please explain below<br>
+            {{ form.expfelony3(class="form-control") }}
+            <br>
+         </p>
+         <p>Note: Thrivera"s platform does not allow Issuers to user our platform if the above is answered with a "Yes" value.</p>
+         <br>
+         <p>
+            (4)	Is any such person subject to an order of the Commission entered pursuant to Section 15(b) or 15B(c) of
+            the Exchange Act or Section 203(e) or (f) of the Investment Advisers Act of 1940 that, at the time of the filing of
+            this offering statement:<br>
+            • suspends or revokes such person"s registration as a broker, dealer, municipal securities dealer, investment adviser or
+            funding portal?<br>
+            • places limitations on the activities, functions or operations of such person?<br>
+            • bars such person from being associated with any entity or from participating in the offering of any penny stock? <br>
+            {{ form.check_felonyfour }} If Yes, please check the box.<br>
+            If yes, please explain below<br>
+            {{ form.expfelony4(class="form-control") }}
+            <br>
+         </p>
+         <p>
+            (5)	Is any such person subject to any order of the Commission entered within five years before the filing of this offering
+            statement that, at the time of the filing of this offering statement, orders the person to cease and desist from committing
+            or causing a violation or future violation of:
+            <br> • Any scienter-based anti-fraud provision of the federal securities laws, including without limitation Section 17(a)(1) of
+            the Securities Act, Section 10(b) of the Exchange Act, Section 15(c)(1) of the Exchange Act and Section 206(1) of
+            the Investment Advisers Act of 1940 or any other rule or regulation thereunder?<br>
+            • Section 5 of the Securities Act? <br>
+            {{ form.check_felonyfive }} If Yes, please check the box.<br>
+            If yes, please explain below<br>
+            {{ form.expfelony5(class="form-control") }}
+            <br>
+         </p>
+         <p>(6) Is any such person suspended or expelled from membership in, or suspended or barred from association with a member of,
+            a registered national securities exchange or a registered national or affiliated securities association for any act or omission
+            to act constituting conduct inconsistent with just and equitable principles of trade? <br>
+            {{ form.check_felonysix }} If Yes, please check the box.<br>
+            If yes, please explain below<br>
+            {{ form.expfelony6(class="form-control") }}
+            <br>
+         </p>
+         <p>(7)	Has any such person filed (as a registrant or issuer), or was any such person or was any such person named as an underwriter
+            in, any registration statement or Regulation A offering statement filed with the Commission that, within five years before the
+            filing of this offering statement, was the subject of a refusal order, stop order, or order suspending the Regulation A exemption,
+            or is any such person, at the time of such filing, the subject of an investigation or proceeding to determine whether a stop order
+            or suspension order should be issued? <br>
+            {{ form.check_felonyseven }} If Yes, please check the box.<br>
+            If yes, please explain below<br>
+            {{ form.expfelony7(class="form-control") }}
+            <br>
+         </p>
+         <p>(8)	Is any such person subject to a United States Postal Service false representation order entered within five years before
+            the filing of the information required by Section 4A(b) of the Securities Act, or is any such person, at the time of filing of
+            this offering statement, subject to a temporary restraining order or preliminary injunction with respect to conduct alleged by
+            the United States Postal Service to constitute a scheme or device for obtaining money or property through the mail by means of
+            false representations? <br>
+            {{ form.check_felonyeight }} If Yes, please check the box.<br>
+            If yes, please explain below<br>
+            {{ form.expfelony8(class="form-control") }}
+         <h5> If you would have answered “Yes” to any of these questions had the conviction, order, judgment,
+            decree, suspension, expulsion or bar occurred or been issued after May 16, 2016, then you are NOT
+            eligible to rely on this exemption under Section 4(a)(6) of the Securities Act.
+         </h5>
+         <br>
+         <p class="text-monospace">INSTRUCTIONS TO QUESTION 30: </p>
+         Final order	means a written directive or declaratory statement
+         issued by a federal or state agency, described in Rule 503(a)(3) of Regulation Crowdfunding , under
+         applicable statutory authority that provides for notice and an opportunity for hearing , which constitutes a
+         final	disposition or action by that federal or state agency.<br>
+         No matters are required to be disclosed with respect to events relating to any affil iated issuer that
+         occurred before the affiliation arose if the affiliated entity is not (i) in control 	of the issuer or (ii) under
+         common control 	with the issuer by a third party that was in control 	of the affiliated entity at the time of
+         such events.
+         </p>
+         <h2 align = " center"> Other Material Information </h2>
+         <p>31. In addition to the information expressly required to be included in this Form, include: <br>
+            (1) any other material information presented to investors, and <br>
+            (2) such further material information, if any, as may be necessary to make the required statements, in the light of the circumstances
+            under which they are made, not misleading.<br>
+         </p>
+         <p class="text-monospace">INSTRUCTIONS TO QUESTION 31:</p>
+         <p>If information is presented to investors in a form at,	media or
+            other	means not able to be reflected in text or portable document format, the issuer should include ; <br>
+            (a) a description of the	material 	content of such information;<br>
+            (b) a description of the form at in which such disclosure is presented; and<br>
+            (c) in the case of disclosure in video, audio or other dynamic	media or format, a transcript or
+            description of such disclosure.
+         </p>
+         <p>
+            Please type below<br>
+            {{ form.ans_threeone(class="form-control") }}
+         </p>
+         </h3>
+         <h1 align="center"> ONGOIN REPORTING </h1>
+         <p>
+            The issuer will file a report electronically with the Securities & Exchange Commission annually and post <br>the report on its
+            website, no later than: <br>
+         <p class="text-center">---------------------------------------------------------------------------------------------------------------------------------------------------</p>
+         (120 days after the end of each fiscal year covered by the report). Once posted, the annual report may be found on the issuer"s
+         website at: {{ form.website(class="form-control", placeholder="Please enter the website link here...") }}
+         <p class="text-center">---------------------------------------------------------------------------------------------------------------------------------------------------</p>
+         The issuer must continue to comply with the ongoing reporting requirements until:
+         (1) the issuer is required to file reports under Section 13(a) or Section 15(d) of the Exchange Act;
+         (2) the issuer has filed at least one annual report pursuant to Regulation Crowdfunding and has fewer than 300 holders of record
+         and has total assets that do not exceed $10,000,000;
+         (3) the issuer has filed at least three annual reports pursuant to Regulation Crowdfunding;
+         (4) the issuer or another party repurchases all of the securities issued in reliance on Section 4(a)(6) of the Securities Act,
+         including any payment in full of debt securities or any complete redemption of redeemable securities; or
+         (5) the issuer liquidates or dissolves its business in accordance with state law.
+         <br>
+         <h4>  *****PUT FILE UPLOAD CODE HERE*****</h4>
+         <p class="text-monospace"> Please Upload Additional Documents here.</p>
+         <div class="custom-file">
+            <input type=file name=file>
+            <input type=submit value=Upload>
+         </div>
+         </p>
+         <p class= "text-monospace">
+         <h3 align= " center ">
+            Click Submit to Save the Information</p> <br>
+            <p class= "text-monospace"><input type ="submit" value="submit" class="btn btn-sm btn-primary"></p>
+         </h3>
+         </form>
+      </div>
+   </body>
+</html>
