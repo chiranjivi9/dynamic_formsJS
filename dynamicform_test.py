@@ -10,8 +10,8 @@ class TestDynamicForm(unittest.TestCase):
     #write a test method in the class and
     #make sure that the name starts with "test"
     def test_dynamicform(self):
-        #call the asssertAlmostEqual
-        self.asssertAlmostEqual(dynamic_form(), True)
+        #call the assertAlmostEqual
+        self.assertAlmostEqual(dynamic_form(), True)
         # here pass the values where the first value is the output and the
         #second value is the correct answer
         # to run the test
